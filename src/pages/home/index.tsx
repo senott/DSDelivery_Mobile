@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   HomeButton,
@@ -10,12 +11,17 @@ import {
   HomeTitle,
 } from './styles';
 import delivery from '../../assets/images/deliveryman.png';
+import Header from '../../components/Header';
 
 const Home: React.FC = () => {
-  const handleOnPress = () => {};
+  const navigation = useNavigation();
+  const handleOnPress = () => {
+    navigation.navigate('Orders');
+  };
 
   return (
     <>
+      <Header />
       <HomeContainer>
         <Image source={delivery} />
         <HomeTitle>
