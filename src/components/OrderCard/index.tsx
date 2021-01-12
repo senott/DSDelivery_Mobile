@@ -1,4 +1,8 @@
 import React from 'react';
+
+import Order from '../../dtos/Order';
+import dateFromNow from '../../utils/dateFromNow';
+import formatPrice from '../../utils/formatPrice';
 import {
   OrderCardContainer,
   OrderCardHeader,
@@ -8,18 +12,22 @@ import {
   OrderCardText,
 } from './styles';
 
-const OrderCard: React.FC = () => {
+interface orderCardProps {
+  order: Order;
+}
+
+const OrderCard: React.FC<orderCardProps> = ({ order }) => {
   return (
     <OrderCardContainer>
       <OrderCardHeader>
-        <OrderCardName>Pedido 1</OrderCardName>
-        <OrderCardPrice>R$ 53,70</OrderCardPrice>
+        <OrderCardName>{`Pedido ${order.id}`}</OrderCardName>
+        <OrderCardPrice>{formatPrice(order.total)}</OrderCardPrice>
       </OrderCardHeader>
-      <OrderCardText>Há 35 minutos</OrderCardText>
+      <OrderCardText>{dateFromNow(order.moment)}</OrderCardText>
       <OrderCardProductList>
-        <OrderCardText>Pizza Calabresa</OrderCardText>
-        <OrderCardText>Pizza Quatro Queijos</OrderCardText>
-        <OrderCardText>Pizza da Casa</OrderCardText>
+        {order.products.map(product => {
+          return <OrderCardText>{product.name}</OrderCardText>;
+        })}
       </OrderCardProductList>
     </OrderCardContainer>
   );
