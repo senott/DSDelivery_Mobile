@@ -24,7 +24,7 @@ export const HomeSubtitle = styled.Text`
 `;
 
 export const HomeFooter = styled.View`
-  margin-top: 5%;
+  margin-top: 15%;
   align-items: center;
 `;
 
