@@ -26,7 +26,7 @@ const OrderCard: React.FC<orderCardProps> = ({ order }) => {
       <OrderCardText>{dateFromNow(order.moment)}</OrderCardText>
       <OrderCardProductList>
         {order.products.map(product => {
-          return <OrderCardText>{product.name}</OrderCardText>;
+          return <OrderCardText key={product.id}>{product.name}</OrderCardText>;
         })}
       </OrderCardProductList>
     </OrderCardContainer>
